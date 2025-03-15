@@ -1,0 +1,20 @@
+.sectSideBar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 100vh;
+    z-index: 10;
+    overflow-y: auto;
+}
+.listMenu{
+    display: block;
+    width: 80px;
+    margin: 0 auto !important;
+    background: #ffffff;
+    border-radius: 40px;
+}
+.listMenu > li{
+    cursor: pointer;
+    margin-bottom: 5px;
+}

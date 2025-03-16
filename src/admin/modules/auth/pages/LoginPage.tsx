@@ -10,7 +10,6 @@ import ForgotPassword from '../../components/ForgotPassword';
 import { FacebookIcon, GoogleIcon } from '../../components/CustomIcons';
 import styles from '../css/LoginStyle.module.css';
 import { SignInContainer } from '../../components';
-import isotipo from '../img/isotipo.png';
 
 const formData = {
     sUsuario    : 'llopez'
@@ -71,7 +70,7 @@ export const LoginPage = (props: { disableCustomTheme?: boolean }) => {
                                         variant="h4"
                                         sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
                                     >
-                                        <img src={ isotipo } alt="" width={40} style={{ verticalAlign: 'middle'}} /> Iniciar Sesión
+                                        Iniciar Sesión
                                     </Typography>
                                     <Box
                                         component="form"

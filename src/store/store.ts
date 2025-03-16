@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { authSlice } from './admin/auth';
-import { userSlice } from './admin/solicitud';
+import { solicitudSlice } from './admin/solicitud';
+import { contactoSlice } from './admin/contacto';
 
 export const store = configureStore({
     reducer: {
-        auth: authSlice.reducer,
-        user: userSlice.reducer,
+        auth        : authSlice.reducer,
+        solicitud   : solicitudSlice.reducer,
+        contacto    :contactoSlice.reducer,
     },
     //middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

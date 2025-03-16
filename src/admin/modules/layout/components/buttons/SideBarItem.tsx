@@ -5,9 +5,10 @@ import { ListItem, ListItemIcon } from "@mui/material";
 interface SideBarItemProps {
     isActive: boolean;
     icon: ReactNode;
+    onClick: any;
 }
 
-const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon }) => {
+const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon, onClick }) => {
     return (
         <ListItem
             sx={{
@@ -31,7 +32,7 @@ const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon }) => {
                 }
                 ,transition: "all ease .3s"
             }}
-            className={isActive ? "active" : ""}
+            className={ isActive ? "active" : "" }
         >
             <ListItemIcon
                 sx={{
@@ -43,6 +44,7 @@ const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon }) => {
                         color: "#8dffa0",  // Cambiar a verde cuando el item es activo
                     },
                 }}
+                onClick={ onClick }
             >
                 {icon}
             </ListItemIcon>

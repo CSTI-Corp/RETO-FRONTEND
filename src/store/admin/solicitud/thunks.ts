@@ -1,23 +1,19 @@
 import axios from "axios";
 import { AppDispatch } from "../../store";
-import { clearUserLogout, deleteUser, listUsers, saveUser, updateUser } from "../solicitud";
-import { UserInterface } from "../../../admin/interfaces/User.interface";
+import { listSolicitud, listSolicitudById, saveSolicitud, setActiveSolicitud } from "../solicitud";
+import { SolicitudInterface } from "../../../admin/interfaces/Solicitud.interface";
 
 export const getAllSolicitudes = () => {
     return async( dispatch: AppDispatch ) => {
 
         try {
             const API_URL = import.meta.env.VITE_API_URL;
-            
-            /// Obtén el token del localStorage
-            //const token = localStorage.getItem("authToken");
 
             const response = await axios.get(`${API_URL}/solicitud`, {
-                //headers: { Authorization: token ? `Bearer ${token}` : "" },
                 timeout: 5000,
             });
             
-            dispatch(listUsers( response.data ));
+            dispatch(listSolicitud( response.data ));
             
         } catch (error) {
             console.error("Error al al obtener los usuarios:", error);
@@ -25,130 +21,57 @@ export const getAllSolicitudes = () => {
     }
 }
 
-// export const postSaveUser = ( userData: UserInterface ) => {
-//     return async( dispatch: AppDispatch ) => {
+export const getSolicitudById = ( id: string) => {
+    return async( dispatch: AppDispatch ) => {
 
-//         try {
-//             const API_URL = import.meta.env.VITE_API_URL;
+        try {
+            const API_URL = import.meta.env.VITE_API_URL;
 
-//             const user = {
-//                 ...userData
-//                 ,bActivo: true
-//                 ,nIdPersona: 1
-//                 ,nIdUsuario_crea: 1
-//             }
-//             const token = localStorage.getItem("authToken");
-
-//             const response = await axios.post(
-//                 `${API_URL}/Usuario/insUsuario`,
-//                 { ...user },
-//                 {headers: { Authorization: token ? `Bearer ${token}` : "" },timeout: 5000,
-//             });
-
+            const response = await axios.get(`${API_URL}/solicitud/${id}`, {
+                timeout: 5000,
+            });
             
-//             dispatch(saveUser( response.data ));
+            dispatch(listSolicitudById( response.data ));
             
-            
-//         } catch (error) {
-//             console.error("Error al al insertar usuario:", error);
-//         }
-//     }
-// }
+        } catch (error) {
+            console.error("Error al al obtener los usuarios:", error);
+        }
+    }
+}
 
-export const postSaveUser = ( userData: UserInterface ) => {
+export const postSaveSolicitud = ( solicitudData: SolicitudInterface ) => {
     return async( dispatch: AppDispatch, getState: any ) => {
 
         try {
-
-            const { nIdUsuario } = getState().auth;
+            const formatDate = (dateString: string) => {
+                const [day, month, year, time] = dateString.split(/[/ ]/); // Divide por "/" o " "
+                return `${year}-${month}-${day} ${time}`;
+            };
 
             const API_URL = import.meta.env.VITE_API_URL;
 
-            const newUser = {
-                ...userData
-                ,bActivo: true
-                ,nIdPersona: 1
-                ,nIdUsuario_crea: nIdUsuario
+            const newSolicitud = {
+                ...solicitudData
+                ,fechaEnvio: formatDate(solicitudData.fechaEnvio)
             }
-
-            const token = localStorage.getItem("authToken");
-
+            
             const response = await axios.post(
-                `${API_URL}/Usuario/insUsuario`,
-                { ...newUser },
-                {headers: { Authorization: token ? `Bearer ${token}` : "" },timeout: 5000,
-            });
-            
-            dispatch(saveUser( response.data ));
-            
+                `${API_URL}/solicitud`
+                ,{ ...newSolicitud }
+                ,{
+                    timeout: 5000
+                }
+            );     
+            dispatch(saveSolicitud( newSolicitud ));
+
+            newSolicitud.id = response.data.id;
+            newSolicitud.success = response.data.success;
+            newSolicitud.data = response.data.data;
+
+            dispatch( setActiveSolicitud( { ...newSolicitud } ) );            
             
         } catch (error) {
             console.error("Error al al insertar usuario:", error);
         }
     }
 }
-
-export const patchUpdateUser = (userData: UserInterface) => {
-    return async (dispatch: AppDispatch) => {
-        try {
-            const API_URL = import.meta.env.VITE_API_URL;
-
-            const updatedUser = {
-                ...userData
-            };
-
-            const token = localStorage.getItem("authToken");
-
-            const response = await axios.patch(
-                `${API_URL}/Usuario/updUsuario`,
-                updatedUser,
-                {
-                    headers: {
-                        Authorization: token ? `Bearer ${token}` : "",
-                    },
-                    timeout: 5000,
-                }
-            );
-            dispatch(updateUser(response.data));
-        } catch (error) {
-            console.error("Error al actualizar el usuario:", error);
-        }
-    };
-};
-
-
-export const delDeleteUser = (userData: UserInterface) => {
-    return async (dispatch: AppDispatch) => {
-        try {
-            const API_URL = import.meta.env.VITE_API_URL;
-            
-            const { nIdUsuario } = userData;
-
-            const token = localStorage.getItem("authToken");
-
-            const response = await axios.delete(
-                `${API_URL}/Usuario/dltUsuario?nIdUsuario=${ nIdUsuario }`,
-                {
-                    headers: {
-                        Authorization: token ? `Bearer ${token}` : "",
-                    },
-                    timeout: 5000,
-                }
-            );
-            dispatch(deleteUser(response.data));
-        } catch (error) {
-            console.error("Error al actualizar el usuario:", error);
-        }
-    };
-};
-
-export const cleanUserLogout = () => {
-    return async (dispatch: AppDispatch) => {
-        try {           
-            dispatch(clearUserLogout());
-        } catch (error) {
-            console.error("Error al actualizar el usuario:", error);
-        }
-    };
-};
-

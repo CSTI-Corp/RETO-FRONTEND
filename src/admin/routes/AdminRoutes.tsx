@@ -2,6 +2,7 @@ import { Navigate, Outlet, Route, Routes } from "react-router";
 // import { LoginPage } from "../modules/auth/pages/LoginPage";
 import { LayoutAdministradorPage } from "../modules/layout/page/LayoutAdministradorPage";
 import { DashboardPage } from "../modules/dashboard/pages/DashboardPage";
+import { SolicitudPage } from "../modules/dashboard/pages/SolicitudPage";
 // import { CheckingAuth } from "../modules/components";
 // import { useCheckAuth } from "../../hooks/useCheckAuth";
 
@@ -34,6 +35,8 @@ export const AdminRoutes = () => {
 
             <Route path="/dashboard" element={<LayoutAdministradorPage> <Outlet /> </LayoutAdministradorPage>} >
                 <Route path="" element={<DashboardPage />} />
+                <Route path="solicitud" element={<SolicitudPage />} />
+                <Route path="solicitud/:id" element={<SolicitudPage />} />
             </Route>
 
             <Route path="*" element={<Navigate to={"/dashboard"} />} />

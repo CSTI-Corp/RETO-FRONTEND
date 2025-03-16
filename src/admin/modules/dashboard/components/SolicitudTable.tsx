@@ -1,22 +1,22 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { IconButton, List, ListItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from "react-router";
 
 interface DashboardTableProps {
     rows: any[];
-    handleOpenModal: (row: any) => void;
-    handleDeleteUser: (row: any) => void;
 }
 
-export const UserTable = ({ rows, handleOpenModal, handleDeleteUser  }: DashboardTableProps) => {
+export const SolicitudTable = ({ rows }: DashboardTableProps) => {
     
+    const navigate = useNavigate();
 
     const columns: GridColDef[] = [
-        { field: 'nIdUsuario', headerName: 'ID', width: 70 }
-        ,{ field: 'sUsuario', headerName: 'Usuario', width: 130 }
-        ,{ field: 'sNombreCompleto', headerName: 'Nombre Completo', width: 130 }
-        ,{ field: 'bActivo', headerName: 'Activo', width: 130 }
+        { field: 'id', headerName: 'ID', width: 70 }
+        ,{ field: 'codigo', headerName: 'CÓDIGO', width: 130 }
+        ,{ field: 'marca', headerName: 'MARCA', width: 130 }
+        ,{ field: 'tipoSolicitud', headerName: 'TIPO SOLICITUD', width: 150 }
+        ,{ field: 'fechaEnvio', headerName: 'FECHA ENVÍO', width: 130 }
         ,{
             field: "actions",
             headerName: "Acción",
@@ -35,22 +35,29 @@ export const UserTable = ({ rows, handleOpenModal, handleDeleteUser  }: Dashboar
                         ,'& .MuiListItem-root:first-of-type': {
                             background: '#8dffa0'
                         }
-                        ,'& .MuiListItem-root:last-child': {
+                        ,'& .MuiListItem-root:nth-of-type(2)': {
                             background: 'red'
                         }
+                        ,'& .MuiListItem-root:last-of-type': {
+                            background: '#7cb342'
+                        }
+                        
                     }}
                 >
                     <ListItem>
                         <IconButton
-                            onClick={ () => { handleOpenModal(params.row) }}
+                            onClick={ () => { navigate("/dashboard/solicitud/" + params.row.id ) }}
                             style={{ color: "#2e7d32"}}
                         >
                             <EditIcon />
                         </IconButton>
                     </ListItem>
-                    <ListItem>
+                    {/* <ListItem>
                         <IconButton onClick={() => handleDeleteUser(params.row)} style={{ color: "#ffcdd2"}}> <DeleteIcon /> </IconButton>
-                    </ListItem>
+                    </ListItem> */}
+                    {/* <ListItem>
+                        <IconButton onClick={() => handleDeleteUser(params.row)} style={{ color: "#ffffff"}}> <PersonAddIcon /> </IconButton>
+                    </ListItem> */}
                 </List>
             ),
         },

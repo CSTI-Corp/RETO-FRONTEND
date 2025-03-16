@@ -11,7 +11,21 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 // Configurar dayjs para que use el idioma español
 dayjs.locale('es');
 
-export const DatepickerAdmin = ({ selectedDate }: { selectedDate: string | null }) => {
+interface DatepickerAdminProps {
+    value: string | null;
+    name: string;
+    onChange: (event: { target: { name: string; value: string } }) => void;
+}
+
+export const DatepickerAdmin = ({ value, name, onChange }: DatepickerAdminProps) => {
+
+    const handleDateChange = (date: any) => {
+        if (!date) return;
+        const formattedDate = dayjs(date).format("DD/MM/YYYY HH:mm:ss");
+
+        onChange({ target: { name, value: formattedDate } });
+    };
+
     return (
         <>
             <LocalizationProvider
@@ -29,7 +43,8 @@ export const DatepickerAdmin = ({ selectedDate }: { selectedDate: string | null 
                 >
                     <DemoItem >
                         <StaticDatePicker
-                            value={selectedDate ? dayjs(selectedDate, "DD/MM/YYYY HH:mm:ss") : null}
+                            value={value ? dayjs(value, "DD/MM/YYYY HH:mm:ss") : null}
+                            onChange={handleDateChange}
                             sx={{   
                                 background: "transparent",
                                 borderRadius: "10px",

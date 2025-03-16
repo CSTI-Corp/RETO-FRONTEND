@@ -12,15 +12,16 @@ import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import { Logout } from "@mui/icons-material";
 import { useAppDispatch } from "../../../../../hooks/reactRedux";
 import { startLogOut } from "../../../../../store/admin/auth";
-import { cleanUserLogout } from "../../../../../store/admin/solicitud";
+import { useNavigate } from "react-router";
 
 export const SideBar = () => {
+
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch(); 
     const [ dense, setDense ] = useState(false);
 
     const onLogOut = () => {
-        dispatch( cleanUserLogout());
         dispatch( startLogOut());
     }
 
@@ -33,13 +34,18 @@ export const SideBar = () => {
                     </Grid>
                     <Box>
                         <List dense={dense} className={style.listMenu}>
-                            <SideBarItem isActive={ true } icon={ <HomeIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <FireTruckIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } />
+                            <SideBarItem
+                                isActive={ true }
+                                icon={ <HomeIcon /> }
+                                onClick={ () => navigate('/dashboard')}
+                            />
+
+                            <SideBarItem isActive={ false } icon={ <FireTruckIcon />  } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
                         </List>
                     </Box>
                     <Box sx={{ mt: 2 }}>

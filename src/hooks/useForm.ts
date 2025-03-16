@@ -1,7 +1,8 @@
 // import { SelectChangeEvent } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, useEffect, useMemo, useState } from "react"
 
-export const useForm = <T>( initialForm:any, formValidations:any = {} ) => {
+export const useForm = <T>( initialForm: any, formValidations:any = {} ) => {
 
     const [ formState, setFormState ] = useState(initialForm);
     const [ formValidation, setFormValidation ] = useState<{ [key: string]: string }>({});
@@ -31,6 +32,14 @@ export const useForm = <T>( initialForm:any, formValidations:any = {} ) => {
             [ name ]: value
         });
     }
+
+    // onChange para select
+    const onSelectChange = (event: SelectChangeEvent) => {
+        setFormState((prev: any) => ({
+            ...prev,
+            [event.target.name]: event.target.value
+        }));
+    };
 
     const onResetForm = () => {
         setFormState( initialForm );
@@ -64,6 +73,7 @@ export const useForm = <T>( initialForm:any, formValidations:any = {} ) => {
 
         //METHODS
         ,onInputChange
+        ,onSelectChange
         ,onResetForm
         ,createValidators
         ,...formValidation

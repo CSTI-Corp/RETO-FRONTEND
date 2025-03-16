@@ -49,7 +49,7 @@ export const DatepickerAdmin = ({ value, name, onChange }: DatepickerAdminProps)
                                 background: "transparent",
                                 borderRadius: "10px",
                                 ".Mui-selected": { // Cambia el color del día seleccionado
-                                    backgroundColor: "#8dffa0 !important",
+                                    backgroundColor: "#aaef62 !important",
                                     color: "#ffffff",
                                 },
                                 ".MuiPickersDay-root": { // Estilo general de los días
@@ -57,11 +57,11 @@ export const DatepickerAdmin = ({ value, name, onChange }: DatepickerAdminProps)
                                     borderRadius: "10px"
                                 },
                                 ".MuiPickersDay-root:hover": { // Hover sobre los días
-                                    backgroundColor: "#8dffa0",
+                                    backgroundColor: "#aaef62",
                                     color: "#ffffff",
                                 },
                                 ".MuiDialogActions-root .MuiButtonBase-root": { // Botones como "OK" y "Cancelar"
-                                    color: "#8dffa0",
+                                    color: "#aaef62",
                                 },
                             }}
                         />

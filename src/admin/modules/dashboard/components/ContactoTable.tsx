@@ -1,14 +1,40 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { IconButton, List, ListItem } from '@mui/material';
+import { DataGrid, GridColDef, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
+import { Button, IconButton, List, ListItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 
 interface DashboardTableProps {
     rows: any[];
 }
 
 export const ContactoTable = ({ rows }: DashboardTableProps) => {
+
+    const CustomExportButton = () => {
+        return (
+            <GridToolbarContainer>
+                <Button
+                    variant="contained"
+                    // color="#ffffff"
+                    // startIcon={<FileDownloadIcon />}
+                    sx={{
+                        textTransform: "none",
+                        fontWeight: "700 !important",
+                        color: "#ffffff !important",
+                        backgroundColor: "#aaef62",
+                        "&:hover": { backgroundColor: "#aaef62" },
+                    }}
+                >
+                    <GridToolbarExport 
+                        csvOptions={{
+                            fileName: "solicitudes",
+                            utf8WithBom: true,
+                            delimiter: ";", // "," - ";"
+                        }}
+                    />
+                </Button>
+            </GridToolbarContainer>
+        );
+    };
 
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 70 }
@@ -71,6 +97,7 @@ export const ContactoTable = ({ rows }: DashboardTableProps) => {
                 checkboxSelection
                 disableRowSelectionOnClick 
                 sx={{ border: 0 }}
+                slots={{ toolbar: CustomExportButton }}
                 localeText={{
                     noRowsLabel: 'No hay registros',
                     columnMenuSortAsc: 'Ordenar ascendente',

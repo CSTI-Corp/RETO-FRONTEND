@@ -20,11 +20,11 @@ export const HeaderAdministrador = () => {
                         <h2>¡Bienvenido!</h2>
                         </Grid>
 
-                        <Grid size={4} className={style.boxSearch}>
+                        <Grid size={4} className={style.boxSearch} sx={{ display: { xs: "none", sm: 3, md: 3 } }}>
                             <SearchBar />
                         </Grid>
 
-                        <Grid size={4} >
+                        <Grid size={4} sx={{ display: { xs: "none", sm: 3, md: 3 } }}>
                             <FormGroup sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "row"}}>
                                 <ThemeSwitch />  {/* ✅ Nuevo componente del switch */}
                                 <ProfileButton /> {/* ✅ Nuevo componente del botón de perfil */}                     

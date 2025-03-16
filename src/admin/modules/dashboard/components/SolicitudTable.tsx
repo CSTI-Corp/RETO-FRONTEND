@@ -1,7 +1,7 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { IconButton, List, ListItem } from '@mui/material';
+import { DataGrid, GridColDef, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
+import { Button, IconButton, List, ListItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 interface DashboardTableProps {
     rows: any[];
@@ -11,9 +11,48 @@ export const SolicitudTable = ({ rows }: DashboardTableProps) => {
     
     const navigate = useNavigate();
 
+    const CustomExportButton = () => {
+        return (
+            <GridToolbarContainer>
+                <Button
+                    variant="contained"
+                    // color="#ffffff"
+                    // startIcon={<FileDownloadIcon />}
+                    sx={{
+                        textTransform: "none",
+                        fontWeight: "700 !important",
+                        color: "#ffffff !important",
+                        backgroundColor: "#aaef62",
+                        "&:hover": { backgroundColor: "#aaef62" },
+                    }}
+                >
+                    <GridToolbarExport 
+                        csvOptions={{
+                            fileName: "solicitudes",
+                            utf8WithBom: true,
+                            delimiter: ";", // "," - ";"
+                        }}
+                    />
+                </Button>
+            </GridToolbarContainer>
+        );
+    };
+
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 70 }
-        ,{ field: 'codigo', headerName: 'CÓDIGO', width: 130 }
+        ,{ 
+            field: 'codigo', 
+            headerName: 'CÓDIGO', 
+            width: 130, 
+            renderCell: (params) => (
+                <Link 
+                    to={`/dashboard/solicitud/${params.row.id}`} 
+                    style={{ textDecoration: "subrayed", color: "#8ccf46", fontWeight: "bold" }}
+                >
+                    {params.value}
+                </Link>
+            )
+        }
         ,{ field: 'marca', headerName: 'MARCA', width: 130 }
         ,{ field: 'tipoSolicitud', headerName: 'TIPO SOLICITUD', width: 150 }
         ,{ field: 'fechaEnvio', headerName: 'FECHA ENVÍO', width: 130 }
@@ -39,7 +78,7 @@ export const SolicitudTable = ({ rows }: DashboardTableProps) => {
                             background: 'red'
                         }
                         ,'& .MuiListItem-root:last-of-type': {
-                            background: '#7cb342'
+                            background: '#8ccf46'
                         }
                         
                     }}
@@ -63,9 +102,7 @@ export const SolicitudTable = ({ rows }: DashboardTableProps) => {
         },
     ];   
     
-    const paginationModel = { page: 0, pageSize: 5 };
-
-    
+    const paginationModel = { page: 0, pageSize: 5 };    
 
     return (
         <>
@@ -77,6 +114,7 @@ export const SolicitudTable = ({ rows }: DashboardTableProps) => {
                 checkboxSelection
                 disableRowSelectionOnClick 
                 sx={{ border: 0 }}
+                slots={{ toolbar: CustomExportButton }}
                 localeText={{
                     noRowsLabel: 'No hay registros',
                     columnMenuSortAsc: 'Ordenar ascendente',

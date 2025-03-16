@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Box, Button, FormControl, InputAdornment, InputLabel, Select, TextField, Typography, MenuItem, FormHelperText } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Grid from "@mui/material/Grid2";
@@ -32,7 +32,7 @@ const formValidations = {
 };
 
 
-export const SolicitudModal = () => {
+export const SolicitudForm = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -109,7 +109,7 @@ export const SolicitudModal = () => {
                                 </Typography>
                             </Grid>
 
-                            <Grid size={6} container sx={{ alignItems: "flex-start"}}>
+                            <Grid size={{ xs: 12, sm: 12,  md: 6 }} container sx={{ alignItems: "flex-start"}}>
                                 <Grid size={12}>
                                     <TextField
                                         variant="outlined"
@@ -222,7 +222,7 @@ export const SolicitudModal = () => {
                                 </Grid>                                
                             </Grid>
 
-                            <Grid size={6}>
+                            <Grid size={{ xs: 12, sm: 12,  md: 6 }}>
                                 <CardAdmin>
                                     <Typography variant="h5" sx={{m:0}}><b>Fecha de Envío</b></Typography>
                                     <DatepickerAdmin
@@ -236,10 +236,10 @@ export const SolicitudModal = () => {
                             <Grid size={6}>
                                 <Button type="button" onClick={ onClickSaveSolicitud } fullWidth variant="contained">Guardar</Button>
                             </Grid>
-                            {/* 
+                            
                             <Grid size={6}>
-                                <Button onClick={ handleClose }  fullWidth variant="contained" hidden={ true }>Cerrar</Button>
-                            </Grid> */}
+                                <Button onClick={ () => navigate("/dashboard") }  fullWidth variant="contained">Regresar</Button>
+                            </Grid>
                         </Grid>
                     </Box>
                 </Grid>

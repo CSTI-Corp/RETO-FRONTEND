@@ -1,23 +1,22 @@
 import Grid from "@mui/material/Grid2";
-import { SolicitudModal } from "../components";
+import { SolicitudForm } from "../components";
 
 
 
 import styles from '../css/DashboardStyle.module.css';
-import { ContactoModal } from "../components/ContactoModal";
+import { ContactoForm } from "../components/ContactoForm";
 
 export const SolicitudPage = () => {
     return (
         <>
             <section className={styles.sectDashboard}>
                 <Grid container spacing={4}>
-                    <Grid size={7}>
-                        <SolicitudModal />
+                    <Grid size={{ xs: 12, sm: 12,  md: 7 }}>
+                        <SolicitudForm />
                     </Grid>
-
-
-                    <Grid size={5}>
-                        <ContactoModal />
+                    
+                    <Grid size={{ xs: 12, sm: 12,  md: 5 }}>
+                        <ContactoForm />
                     </Grid>
 
                 </Grid>

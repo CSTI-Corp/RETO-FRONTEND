@@ -38,28 +38,25 @@ export const DashboardPage = () => {
         <section className={styles.sectDashboard}>
 
             <Grid container spacing={4}>
-                <Grid size={3}>
+                <Grid size={{ xs: 12, sm: 12,  md: 3 }} sx={{ order: { xs:2, sm: 2, md: 1 } }}>
                     <CardAdmin>
                         <Typography variant="h5"><b>CUMPLEAÑOS</b></Typography>
                         <DatepickerAdmin
                             name="fechaEnvioDashboard"
-                            value="14/03/2025 00:00:00"
+                            value="04/10/2025 00:00:00"
                             onChange={ () => {} }
                         />
                     </CardAdmin>
                 </Grid>
 
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 12,  md: 6 }} sx={{ order: { xs:1, sm: 1, md: 2 } }}>
                     <CardAdmin>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Typography variant="h5" sx={{ fontWeight: '700' }}>SOLICITUDES</Typography>
                             <Button
                                 variant="contained"
-                                // onClick={() => {
-                                //     handleOpenModal(null);
-                                // }}
                                 onClick={() => {
-                                    navigate("/dashboard/solicitud"); // Redirige a la página de agregar solicitud
+                                    navigate("/dashboard/solicitud");
                                 }}
                             >
                                 AGREGAR
@@ -73,7 +70,7 @@ export const DashboardPage = () => {
                     </CardAdmin>
                 </Grid>
 
-                <Grid size={3}>
+                <Grid size={{ xs: 12, sm: 12,  md: 3 }} sx={{ order: { xs: 3, sm: 3, md: 3 } }}>
                     <CardAdmin>
                         <PerfilDashboard sUsuario={ "BORIS ESTRADA" } />
                     </CardAdmin>
@@ -81,9 +78,6 @@ export const DashboardPage = () => {
 
                 { /****************/}
             </Grid>
-
-            {/* <SolicitudModal open={open} handleClose={handleCloseModal} /> */}
-
         </section>
     )
 }

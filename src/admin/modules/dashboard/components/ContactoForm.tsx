@@ -16,11 +16,10 @@ const formValidations = {
     numeroContacto: [
         (value: any) => /^\d+$/.test(value), 'El Número de Contacto debe contener solo números'
     ],
-    // tipocontacitud: [(value: any) => value !== '' && value !== null && value !== undefined, 'El Tipo de contacitud es obligatorio'],
 };
 
 
-export const ContactoModal = () => {
+export const ContactoForm = () => {
 
     const dispatch = useAppDispatch();
 
@@ -65,14 +64,6 @@ export const ContactoModal = () => {
             console.error("Error en el registro:", error);
         }
     }    
-
-    /////////////////////////////////////////////////
-
-    // useEffect(() => {
-    //     if (id) {
-    //         dispatch(getContactoById(id));
-    //     }
-    // }, [dispatch]);
 
     /////////////////////////////////////////////////////
     const [rows, setRows] = useState<any[]>([]);;

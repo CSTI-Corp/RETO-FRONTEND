@@ -23,12 +23,12 @@ const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon, onClick }) => {
                 ,"&:hover": {
                     backgroundColor: "black",
                     "& .MuiListItemIcon-root": {
-                        color: "#5fff5f",                        
+                        color: "#aaef62",                        
                     }
                     ,transition: "all ease .3s"
                 }
                 ,"& .MuiListItemIcon-root": {
-                    color: "#5fff5f",
+                    color: "#aaef62",
                 }
                 ,transition: "all ease .3s"
             }}
@@ -38,10 +38,10 @@ const SideBarItem: FC<SideBarItemProps> = ({ isActive, icon, onClick }) => {
                 sx={{
                     minWidth: "auto",
                     "&:hover": {
-                        color: "#8dffa0",  // Cambiar a verde cuando se hace hover
+                        color: "#aaef62",  // Cambiar a verde cuando se hace hover
                     },
                     "&.active": {
-                        color: "#8dffa0",  // Cambiar a verde cuando el item es activo
+                        color: "#aaef62",  // Cambiar a verde cuando el item es activo
                     },
                 }}
                 onClick={ onClick }

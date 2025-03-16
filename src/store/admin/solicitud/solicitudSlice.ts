@@ -28,6 +28,11 @@ export const solicitudSlice = createSlice({
             state.data = payload.data;
             state.errMsj = payload.errMsj;
         },
+        updateSolicitud: ( state, { payload }) => {
+            state.success = payload.success;
+            state.data = payload.data;
+            state.errMsj = payload.errMsj;
+        },
         setActiveSolicitud: (state, { payload } ) => {
             state.active = payload;
             state.success = payload.success;
@@ -38,4 +43,4 @@ export const solicitudSlice = createSlice({
         }
     }
 });
-export const { listSolicitud, saveSolicitud, setActiveSolicitud, listSolicitudById } = solicitudSlice.actions;
+export const { listSolicitud, saveSolicitud, setActiveSolicitud, listSolicitudById, updateSolicitud } = solicitudSlice.actions;

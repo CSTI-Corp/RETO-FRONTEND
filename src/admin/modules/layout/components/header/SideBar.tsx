@@ -40,12 +40,12 @@ export const SideBar = () => {
                                 onClick={ () => navigate('/dashboard')}
                             />
 
-                            <SideBarItem isActive={ false } icon={ <FireTruckIcon />  } onClick={ () => {} } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => {} } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => {} } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => {} } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => {} } />
-                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => {} } />
+                            <SideBarItem isActive={ false } icon={ <FireTruckIcon />  } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
+                            <SideBarItem isActive={ false } icon={ <PointOfSaleIcon /> } onClick={ () => navigate('/dashboard')} />
                         </List>
                     </Box>
                     <Box sx={{ mt: 2 }}>

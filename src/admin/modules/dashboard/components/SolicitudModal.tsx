@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Box, Button, FormControl, InputAdornment, InputLabel, Select, TextField, Typography, MenuItem, FormHelperText } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Grid from "@mui/material/Grid2";
-import { getSolicitudById, postSaveSolicitud } from "../../../../store/admin/solicitud";
+import { getSolicitudById, postSaveSolicitud, putUpdateSolicitud } from "../../../../store/admin/solicitud";
 import { useAppDispatch } from "../../../../hooks/reactRedux";
 import { useForm } from "../../../../hooks/useForm";
 import Swal from "sweetalert2";
@@ -78,7 +78,7 @@ export const SolicitudModal = () => {
             if ( !active?.id ){
                 dispatch(postSaveSolicitud( formState ));
             }else{
-                console.log("EDITAR");
+                dispatch(putUpdateSolicitud( formState ));
             }
         } catch (error) {
             console.error("Error en el registro:", error);
@@ -234,7 +234,7 @@ export const SolicitudModal = () => {
                             </Grid>
 
                             <Grid size={6}>
-                                <Button type="button" onClick={ onClickSaveSolicitud } fullWidth variant="contained" hidden={ !codigo }>Guardar</Button>
+                                <Button type="button" onClick={ onClickSaveSolicitud } fullWidth variant="contained">Guardar</Button>
                             </Grid>
                             {/* 
                             <Grid size={6}>

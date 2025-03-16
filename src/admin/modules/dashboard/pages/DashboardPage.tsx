@@ -58,7 +58,6 @@ export const DashboardPage = () => {
                                 // onClick={() => {
                                 //     handleOpenModal(null);
                                 // }}
-                                aria-hidden="true"
                                 onClick={() => {
                                     navigate("/dashboard/solicitud"); // Redirige a la página de agregar solicitud
                                 }}

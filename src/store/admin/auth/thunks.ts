@@ -26,7 +26,7 @@ export const startLoginWithEmailPassword = ( sUsuario: string, sPassword: string
                 const token = response.data.data;
 
                 const { nIdUsuario, sUsuario, dFechaNac } = jwtDecode<{ nIdUsuario: number, sUsuario: string, dFechaNac: Date }>(token);
-                 dispatch(login({ token, nIdUsuario, sUsuario, dFechaNac }));
+                dispatch(login({ token, nIdUsuario, sUsuario, dFechaNac }));
 
                 localStorage.setItem('authToken', token);
                 Swal.fire("Bienvenido", sUsuario, "success");
